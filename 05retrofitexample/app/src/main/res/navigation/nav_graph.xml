@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/landListFragment">
+
+    <fragment
+        android:id="@+id/landListFragment"
+        android:name="cl.cat2814.a05retrofitexample.userInterface.LandListFragment"
+        android:label="fragment_land_list"
+        tools:layout="@layout/fragment_land_list" />
+</navigation>
