@@ -1,4 +1,4 @@
-package cl.cat2814.a05retrofitexample.userInterface.adapter
+package cl.cat2814.a05retrofitexample.userInterface.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

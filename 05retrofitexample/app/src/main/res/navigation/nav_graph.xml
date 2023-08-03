@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/landListFragment"
-        android:name="cl.cat2814.a05retrofitexample.userInterface.LandListFragment"
+        android:name="cl.cat2814.a05retrofitexample.userInterface.fragments.LandListFragment"
         android:label="fragment_land_list"
         tools:layout="@layout/fragment_land_list" />
 </navigation>

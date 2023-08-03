@@ -1,4 +1,4 @@
-package cl.cat2814.a05retrofitexample.userInterface
+package cl.cat2814.a05retrofitexample.userInterface.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
