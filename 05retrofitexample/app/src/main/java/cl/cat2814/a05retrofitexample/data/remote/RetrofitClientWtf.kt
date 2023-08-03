@@ -3,7 +3,7 @@ package cl.cat2814.a05retrofitexample.data.remote
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitClient {
+class RetrofitClientWtf {
     companion object {
         private const val URL_BASE = "https://android-kotlin-fun-mars-server.appspot.com/"
 
