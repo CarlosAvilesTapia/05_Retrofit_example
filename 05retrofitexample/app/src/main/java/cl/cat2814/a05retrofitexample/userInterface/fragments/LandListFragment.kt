@@ -42,7 +42,7 @@ class LandListFragment : Fragment() {
     private fun initAdapter() {
         val landAdapter = LandAdapter()
         binding.rvLandList.adapter = landAdapter
-        landViewModel.liveDataLands.observe(viewLifecycleOwner) {
+        landViewModel.liveDataLands().observe(viewLifecycleOwner) {
             landAdapter.setData(it)
         }
     }

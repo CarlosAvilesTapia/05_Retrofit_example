@@ -3,6 +3,7 @@ package cl.cat2814.a05retrofitexample.userInterface.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import cl.cat2814.a05retrofitexample.data.local.LandEntity
 import cl.cat2814.a05retrofitexample.data.remote.Land
 import cl.cat2814.a05retrofitexample.databinding.LandItemBinding
 import coil.load
@@ -11,7 +12,7 @@ import coil.transform.CircleCropTransformation
 class LandAdapter: RecyclerView.Adapter<LandAdapter.LandItemViewHolder>() {
 
     private lateinit var binding: LandItemBinding
-    private val landList = mutableListOf<Land>()
+    private val landList = mutableListOf<LandEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LandItemViewHolder {
         binding = LandItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,14 +28,14 @@ class LandAdapter: RecyclerView.Adapter<LandAdapter.LandItemViewHolder>() {
         return landList.size
     }
 
-    fun setData(land: List<Land>) {
+    fun setData(lands: List<LandEntity>) {
         this.landList.clear()
-        this.landList.addAll(land)
+        this.landList.addAll(lands)
         notifyDataSetChanged()
     }
 
     class LandItemViewHolder(val binding: LandItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(land: Land) {
+        fun bind(land: LandEntity) {
             binding.ivLand.load(land.imgUrl) {
                 crossfade(true)
                 transformations(CircleCropTransformation())

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import cl.cat2814.a05retrofitexample.data.LandRepository
+import cl.cat2814.a05retrofitexample.data.local.LandDatabase
 import cl.cat2814.a05retrofitexample.data.remote.Land
 import cl.cat2814.a05retrofitexample.data.remote.RetrofitClientWtf
 import kotlinx.coroutines.launch
@@ -12,14 +13,15 @@ import kotlinx.coroutines.launch
 class LandViewModel(application: Application) : AndroidViewModel(application) {
 
     private val landRepository: LandRepository
-    val liveDataLands = MutableLiveData<List<Land>>()
+    fun liveDataLands() = landRepository.getLands()
 
     init {
         val api = RetrofitClientWtf.getRetrofitClient()
-        landRepository = LandRepository(api)
+        val landDatabase = LandDatabase.getDatabase(application).getLandsDao()
+        landRepository = LandRepository(api, landDatabase)
     }
 
     fun getAllLands() = viewModelScope.launch {
-        liveDataLands.value = landRepository.getLand()
+        landRepository.loadLands()
     }
 }
