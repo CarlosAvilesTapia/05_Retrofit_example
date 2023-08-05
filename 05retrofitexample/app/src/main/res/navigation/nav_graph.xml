@@ -9,5 +9,18 @@
         android:id="@+id/landListFragment"
         android:name="cl.cat2814.a05retrofitexample.userInterface.fragments.LandListFragment"
         android:label="fragment_land_list"
-        tools:layout="@layout/fragment_land_list" />
+        tools:layout="@layout/fragment_land_list" >
+        <action
+            android:id="@+id/action_landListFragment_to_landDetailFragment"
+            app:destination="@id/landDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/landDetailFragment"
+        android:name="cl.cat2814.a05retrofitexample.userInterface.fragments.LandDetailFragment"
+        android:label="fragment_land_detail"
+        tools:layout="@layout/fragment_land_detail" >
+        <action
+            android:id="@+id/action_landDetailFragment_to_landListFragment"
+            app:destination="@id/landListFragment" />
+    </fragment>
 </navigation>

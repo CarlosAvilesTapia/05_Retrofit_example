@@ -1,8 +1,12 @@
 package cl.cat2814.a05retrofitexample.userInterface.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import cl.cat2814.a05retrofitexample.R
 import cl.cat2814.a05retrofitexample.data.local.LandEntity
 import cl.cat2814.a05retrofitexample.data.remote.Land
 import cl.cat2814.a05retrofitexample.databinding.LandItemBinding
@@ -39,6 +43,13 @@ class LandAdapter: RecyclerView.Adapter<LandAdapter.LandItemViewHolder>() {
             binding.ivLand.load(land.imgUrl) {
                 crossfade(true)
                 transformations(CircleCropTransformation())
+            }
+
+            binding.cvLandItem.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("landId", land.id)
+                findNavController(binding.root).
+                navigate(R.id.action_landListFragment_to_landDetailFragment, bundle)
             }
         }
     }
