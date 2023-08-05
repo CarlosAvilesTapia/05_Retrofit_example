@@ -53,17 +53,11 @@ class LandDetailFragment : Fragment() {
     private fun initViewModel() {
         landViewModel.liveDataLandFromRepository(param1.toString()).observe(viewLifecycleOwner) {
             binding.tvLandId.text = it.id
-            binding.tvLandPrice.text = getPriceFormat(it.price)
+            binding.tvLandPrice.text = landViewModel.getPriceFormat(it.price)
             binding.tvLandType.text = it.type
             binding.ivLandImage.load(it.imgUrl) {
                 transformations(RoundedCornersTransformation(20f))
             }
         }
-    }
-
-    // Función para formatear Int del precio a un String en formato moneda.
-    private fun getPriceFormat(price: Int): String {
-        val currency: NumberFormat = NumberFormat.getCurrencyInstance(Locale("en", "US"))
-        return currency.format(price)
     }
 }
