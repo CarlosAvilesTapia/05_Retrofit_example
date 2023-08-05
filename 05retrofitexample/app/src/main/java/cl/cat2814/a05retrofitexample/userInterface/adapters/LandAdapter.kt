@@ -3,6 +3,7 @@ package cl.cat2814.a05retrofitexample.userInterface.adapters
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,11 @@ class LandAdapter: RecyclerView.Adapter<LandAdapter.LandItemViewHolder>() {
     override fun onBindViewHolder(holder: LandAdapter.LandItemViewHolder, position: Int) {
         val land = landList[position]
         holder.bind(land)
+
+        // Aplicación de la animación creada en la carpeta res.
+        holder.binding.cvLandItem.startAnimation(
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.anim_cv)
+        )
     }
 
     override fun getItemCount(): Int {

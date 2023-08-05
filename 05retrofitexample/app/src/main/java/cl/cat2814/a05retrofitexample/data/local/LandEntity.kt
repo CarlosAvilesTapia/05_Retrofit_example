@@ -10,3 +10,4 @@ data class LandEntity(
     val type: String,
     val imgUrl: String
 )
+

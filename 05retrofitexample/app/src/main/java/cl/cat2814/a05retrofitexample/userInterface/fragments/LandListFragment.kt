@@ -15,28 +15,15 @@ class LandListFragment : Fragment() {
     private lateinit var binding: FragmentLandListBinding
     private val landViewModel: LandViewModel by activityViewModels()
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLandListBinding.inflate(layoutInflater, container, false)
 
-        initListener()
-
         initAdapter()
 
         return binding.root
-    }
-
-    private fun initListener() {
-        binding.btLoadData.setOnClickListener {
-            landViewModel.getAllLands()
-        }
     }
 
     private fun initAdapter() {

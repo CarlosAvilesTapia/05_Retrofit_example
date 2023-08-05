@@ -16,4 +16,8 @@ interface LandDao {
 
     @Query("SELECT * FROM land_table ORDER BY id ASC")
     fun getAllLands(): LiveData<List<LandEntity>>
+
+    // Creación de query para pedir detalle del terreno desde la Database.
+    @Query("SELECT * FROM land_table WHERE id = :id")
+    fun getDetailLandFromDatabase(id: String): LiveData<LandEntity>
 }

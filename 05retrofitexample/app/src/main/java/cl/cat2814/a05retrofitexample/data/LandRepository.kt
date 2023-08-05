@@ -13,6 +13,9 @@ class LandRepository(
 
     fun getLands(): LiveData<List<LandEntity>> = landDao.getAllLands()
 
+    // Creación de función para obtener detalle del terreno desde el Dao.
+    fun getLandFromDao(id: String): LiveData<LandEntity> = landDao.getDetailLandFromDatabase(id)
+
     suspend fun loadLands() {
         val response = apiLand.getData()
         if (response.isSuccessful) {

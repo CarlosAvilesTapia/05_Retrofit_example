@@ -1,36 +1,33 @@
 package cl.cat2814.a05retrofitexample.userInterface.fragments
 
+import android.icu.text.NumberFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import cl.cat2814.a05retrofitexample.R
 import cl.cat2814.a05retrofitexample.databinding.FragmentLandDetailBinding
+import cl.cat2814.a05retrofitexample.userInterface.viewModel.LandViewModel
+import coil.load
+import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "landId"
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LandDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LandDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentLandDetailBinding
-
-
+    private val landViewModel: LandViewModel by activityViewModels()
     private var param1: String? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
-
         }
     }
 
@@ -40,10 +37,33 @@ class LandDetailFragment : Fragment() {
     ): View? {
         binding = FragmentLandDetailBinding.inflate(layoutInflater, container, false)
 
-        binding.tvLandId.text = param1
+        initListener()
+
+        initViewModel()
 
         return binding.root
     }
 
+    private fun initListener() {
+        binding.btBackToList.setOnClickListener {
+            findNavController().navigate(R.id.action_landDetailFragment_to_landListFragment)
+        }
+    }
 
+    private fun initViewModel() {
+        landViewModel.liveDataLandFromRepository(param1.toString()).observe(viewLifecycleOwner) {
+            binding.tvLandId.text = it.id
+            binding.tvLandPrice.text = getPriceFormat(it.price)
+            binding.tvLandType.text = it.type
+            binding.ivLandImage.load(it.imgUrl) {
+                transformations(RoundedCornersTransformation(20f))
+            }
+        }
+    }
+
+    // Función para formatear Int del precio a un String en formato moneda.
+    private fun getPriceFormat(price: Int): String {
+        val currency: NumberFormat = NumberFormat.getCurrencyInstance(Locale("en", "US"))
+        return currency.format(price)
+    }
 }

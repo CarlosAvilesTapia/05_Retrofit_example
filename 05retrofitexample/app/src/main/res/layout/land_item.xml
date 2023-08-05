@@ -14,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#A3E8864A"
         android:clickable="true"
         android:focusable="auto"
         android:foreground="?attr/selectableItemBackground"
